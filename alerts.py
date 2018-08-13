@@ -1,5 +1,6 @@
 import boto3
 ec2= boto3.client('ec2',region_name= 'us-east-1')
+sns = boto3.client('sns',region_name= 'us-east-1')
 response = ec2.describe_instances()
 for x in response['Reservations']:
     a = x['Instances'][0]['ImageId']
@@ -18,4 +19,8 @@ for x in response['Reservations']:
             s = p['CurrentState']['Name']
             s1 =  p['InstanceId']
             s2 = p['PreviousState']['Name']
-            print("Instance id with '{}', Previous state is '{}' and current state is '{}'".format(s1,s2,s))
+            s4 = ("Instance id with '{}', Previous state is '{}' and current state is '{}'".format(s1,s2,s))
+res1 = sns.publish(
+    TopicArn='arn:aws:sns:us-east-1:682447408639:SNS_ALERTS',
+    Message=s4,
+    Subject='EC2sTOPaLERTS')
