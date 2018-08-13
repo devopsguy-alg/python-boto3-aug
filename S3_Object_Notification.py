@@ -8,6 +8,6 @@ def lambda_handler(event, context):
     e = event['Records'][0]['s3']['object']['size']
     f = "In AWS REGION '{}' Created in '{}' In bucket '{}' Object Value '{}' and object size '{}'".format(a,b,c,d,e) 
     res1 = client.publish(
-        TopicArn='arn:aws:sns:us-east-1:682447408639:SNS_ALERTS',
+        TopicArn='arn:aws:sns:us-east-1:156167408639:SNS_ALERTS',
         Message = f,
         Subject='S3 Object Details Details')

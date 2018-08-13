@@ -21,6 +21,6 @@ for x in response['Reservations']:
             s2 = p['PreviousState']['Name']
             s4 = ("Instance id with '{}', Previous state is '{}' and current state is '{}'".format(s1,s2,s))
 res1 = sns.publish(
-    TopicArn='arn:aws:sns:us-east-1:682447408639:SNS_ALERTS',
+    TopicArn='arn:aws:sns:us-east-1:5654647408639:SNS_ALERTS',
     Message=s4,
     Subject='EC2sTOPaLERTS')
